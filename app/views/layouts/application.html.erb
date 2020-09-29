@@ -1,0 +1,56 @@
+<!-- Theme taken from https://business-starter-template.webflow.io/about -->
+
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com --><!-- Last Published: Thu May 16 2019 06:16:11 GMT+0000 (UTC) -->
+<html data-wf-domain="business-starter-template.webflow.io" data-wf-page="5c6ebc652f27aff8ab950172" data-wf-site="5c6eb5400253230156de2bd6">
+  <head>
+    <title>Email Notifications</title>
+    <%= csrf_meta_tags %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://assets.website-files.com/5c6eb5400253230156de2bd6/css/business-starter-template.webflow.d0b16c944.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+    <!-- Load Font for the website -->
+    <script type="text/javascript">WebFont.load({  google: {    families: ["Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"]  }});</script>
+    <link href="https://assets.website-files.com/img/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="https://assets.website-files.com/img/webclip.png" rel="apple-touch-icon"/>
+  </head>
+  <body>
+    <div data-collapse="medium" data-animation="default" data-duration="400" class="navigation w-nav">
+      <div class="navigation-wrap">
+        <%= link_to root_path, class: "logo-link w-nav-brand" do %>
+          <img src="/emailnotif.png" width="108" alt="email" class="logo-image"/>
+        <% end %>
+        <div class="menu">
+          <nav role="navigation" class="navigation-items w-nav-menu">
+            <% if user_signed_in? %>
+              <%= link_to "Home", root_path, class: "navigation-item w-nav-link"%>
+              <%= link_to "Account", edit_user_registration_path, class: "navigation-item w-nav-link"  %>
+              <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "button cc-contact-us w-inline-block") %>
+            <% else %>
+              <%= link_to "Sign In", new_user_session_path, class: "navigation-item w-nav-link" %>
+              <%= link_to "Sign Up", new_user_registration_path, class: "navigation-item w-nav-link" %>
+            <% end %>
+          </nav>
+
+          <div class="menu-button w-nav-button">
+            <img src="https://assets.website-files.com/5c6eb5400253230156de2bd6/5c6eb8fd2f27af658094fa4a_menu-icon.png" width="22" alt="" class="menu-icon"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="notice" style="color: green;margin-left: 2vw;"><%= notice %></p>
+    <p class="alert" style="color: red;margin-left: 2vw;"><%= alert %></p>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+    <div class="section" style="background-color: #000;height: 20vh;margin: 20px 0 10px 0;">
+      <div class="container" style="text-align: center;padding-top: 5vh;">
+          <p style="color: #F7F7F7;">
+            Designed and maintained by <h5 style="color: #F7F7F7;">Gaurang Velingkar</h5>
+          </p>
+      </div>
+    </div>
+  </body>
+</html>

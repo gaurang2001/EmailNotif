@@ -1,0 +1,30 @@
+<div class="section" style="margin: 50px 50px 50px 50px;">
+  <div class="container">
+    <div id="w-node-509be705858e-72b94c39" class="contact-form-wrap">
+      <div class="contact-form-heading-wrap"><h2>Change your Password</h2></div>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= f.hidden_field :reset_password_token %>
+
+        <div class="field">
+          <%= f.label :password, "New password" %><br />
+          <% if @minimum_password_length %>
+            <i>(<%= @minimum_password_length %> characters minimum)</i>
+          <% end %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'text-field cc-contact-field w-input', placeholder: 'Enter password' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation, "Confirm new password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'text-field cc-contact-field w-input', placeholder: 'Re-enter password' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Change my password", class: "button w-button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render "devise/shared/links" %>

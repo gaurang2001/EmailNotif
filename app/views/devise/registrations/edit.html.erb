@@ -1,0 +1,52 @@
+<div class="section" style="margin: 50px 50px 50px 50px;">
+  <div class="container">
+    <div id="w-node-509be705858e-72b94c39" class="contact-form-wrap">
+      <div class="contact-form-heading-wrap"><h2>Edit Account</h2></div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'text-field cc-contact-field w-input', placeholder: 'Enter email' %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :password %> <i>(Leave blank if you don't want to change it)</i><br/>
+          <% if @minimum_password_length %>
+            <i><%= @minimum_password_length %> characters minimum</i>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password", class: 'text-field cc-contact-field w-input', placeholder: 'Enter password' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'text-field cc-contact-field w-input', placeholder: 'Re-enter password' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :current_password %> <i>We need your current password to confirm your changes)</i>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: 'text-field cc-contact-field w-input', placeholder: 'Enter current password' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Update", class: "button w-button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin: 50px 50px 50px 50px;">
+  <div class="container">
+    <div id="w-node-509be705858e-72b94c39" class="contact-form-wrap">
+      <div class="contact-form-heading-wrap"><h2>Cancel my Account</h2></div>
+      <p>Unhappy?
+        <%= button_to "Cancel my Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button w-button" %>
+      </p>
+    </div>
+  </div>
+</div>
