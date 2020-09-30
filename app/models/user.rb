@@ -14,4 +14,5 @@ class User < ApplicationRecord
   def admin
     id == User.first.id
   end
+
 end

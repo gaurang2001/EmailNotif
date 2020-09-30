@@ -32,6 +32,8 @@ class UsersController < ApplicationController
 
   def send_mail
     # TODO: Enter logic for sending mails
+    NotifMailer.notification.deliver
+    redirect_to root_path
   end
 
   private
