@@ -6,5 +6,9 @@ Rails.application.routes.draw do
     member do
       get 'my_account', action: 'edit', as: 'my_account'
     end
+    collection do
+      get 'admin'
+      post 'send_mail'
+    end
   end
 end

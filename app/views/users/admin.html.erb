@@ -1,0 +1,71 @@
+<div class="section" style="margin: 50px 50px 50px 50px;">
+  <div class="container">
+    <div id="w-node-509be705858e-72b94c39" class="contact-form-wrap">
+      <div class="contact-form-heading-wrap"><h2>Notify Users</h2></div>
+      <div class="field">
+        <%= label_tag :sender_email %>
+        <%# TODO: Replace with sender email %>
+        <%= text_field_tag :email, current_user.email, class: 'text-field cc-contact-field w-input', disabled: true %>
+      </div>
+      <%= form_with url: send_mail_users_path do |f| %>
+        <div class="field">
+          <%= f.label :select_users %>
+          <%= f.select :choice, options_for_select(["All","Filter","Single User"], "All"), { required: true }, class: 'select-field cc-contact-field w-input', id: 'choice' %>
+        </div>
+
+        <div class="field hidden-first single">
+          <br>
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'text-field cc-contact-field w-input', placeholder: 'Enter full name' %>
+        </div>
+
+        <div class="field hidden-first filter">
+          <br>
+          <%= f.label :location %>
+          <%= f.text_field :location, class: 'text-field cc-contact-field w-input', placeholder: 'Enter residential location' %>
+        </div>
+
+        <div class="field hidden-first filter">
+          <%= f.label :age %>
+          <%= f.number_field :age, class: 'text-field cc-contact-field w-input', placeholder: 'Enter age' %>
+        </div>
+
+        <div class="field hidden-first filter">
+          <%= f.label :gender %>
+          <%= f.select :gender, options_for_select(@gender), { prompt: '--Select one--' }, class: 'select-field cc-contact-field w-input' %>
+        </div>
+        <br>
+        <div class="field">
+          <%= f.label :subject %>
+          <%= f.text_field :subject, class: 'text-field cc-contact-field w-input', placeholder: 'Enter subject of the mail', required: true %>
+        </div>
+
+        <div class="field">
+          <%= f.label :content %>
+          <%= f.text_area :content, class: 'text-field cc-textarea cc-contact-field w-input', placeholder: 'Enter body of the mail', required: true %>
+        </div>
+        <br>
+        <div class="actions" style="text-align: center;">
+          <%= f.submit "Send Mail", class: "button w-button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script>
+  $(document).ready(function() {
+      $('.hidden-first').hide();
+  });
+
+  $('#choice').on('change', function() {
+      $('.hidden-first').hide();
+      var val = $('#choice').val();
+      if(val==="Filter") {
+          $('.filter').show();
+      }
+      else if(val==="Single User") {
+          $('.single').show();
+      }
+  });
+</script>

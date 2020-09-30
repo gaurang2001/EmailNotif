@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_new_user, only: :index
+  before_action :check_admin, only: [:admin, :send_mail]
+
+  # TODO: Documentation
 
   def index
     @total = User.count
@@ -23,6 +26,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def admin
+    @gender = User.gender_mapping.invert
+  end
+
+  def send_mail
+    # TODO: Enter logic for sending mails
+  end
+
   private
 
   def my_account_params
@@ -35,4 +46,7 @@ class UsersController < ApplicationController
     end
   end
 
+  def check_admin
+    redirect_to root_path, alert: "You are not authorised to access this page" unless current_user.admin
+  end
 end
