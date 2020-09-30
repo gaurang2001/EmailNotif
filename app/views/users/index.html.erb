@@ -3,15 +3,31 @@
     <div class="intro-content cc-homepage">
       <div class="intro-text">
         <div class="heading-jumbo">
-          Welcome,
+          Welcome, <%= current_user.name %>
         </div>
       </div>
     </div>
   </div>
   <div class="container">
     <div class="motto-wrap">
-      <div class="intro-text">
+      <div class="heading-jumbo-small">
         This is an email notification portal where the admin can notify registered users about an event or any message via email.
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="container">
+    <div class="motto-wrap">
+      <div class="about-story-wrap">
+        <h3 style="text-align: center;">
+          Total users : <%= @total %>
+        </h3>
+      </div>
+      <div class="divider"></div>
+      <div class="about-story-wrap">
+        <p class="paragraph-light">
+          <strong><%= @message %></strong>
+        </p>
       </div>
     </div>
   </div>

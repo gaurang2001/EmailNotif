@@ -3,7 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def self.gender_mapping
+    {
+        0 => "Male",
+        1 => "Female"
+    }
+  end
+
   def admin
-    current_user == User.first
+    id == User.first.id
   end
 end

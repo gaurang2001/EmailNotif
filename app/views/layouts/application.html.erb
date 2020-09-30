@@ -23,8 +23,12 @@
         <div class="menu">
           <nav role="navigation" class="navigation-items w-nav-menu">
             <% if user_signed_in? %>
-              <%= link_to "Home", root_path, class: "navigation-item w-nav-link"%>
-              <%= link_to "Account", edit_user_registration_path, class: "navigation-item w-nav-link"  %>
+              <%= link_to "Dashboard", root_path, class: "navigation-item w-nav-link"%>
+              <% if current_user.admin %>
+                <%= link_to "Admin Dashboard", root_path, class: "navigation-item w-nav-link"%>
+              <% end %>
+              <%= link_to "My Account", my_account_user_path(current_user.id), class: "navigation-item w-nav-link" %>
+              <%= link_to "Change Password", edit_user_registration_path, class: "navigation-item w-nav-link"  %>
               <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "button cc-contact-us w-inline-block") %>
             <% else %>
               <%= link_to "Sign In", new_user_session_path, class: "navigation-item w-nav-link" %>
@@ -45,12 +49,15 @@
     <div class="container">
       <%= yield %>
     </div>
-    <div class="section" style="background-color: #000;height: 20vh;margin: 20px 0 10px 0;">
-      <div class="container" style="text-align: center;padding-top: 5vh;">
-          <p style="color: #F7F7F7;">
-            Designed and maintained by <h5 style="color: #F7F7F7;">Gaurang Velingkar</h5>
-          </p>
+    <div class="section cc-cta">
+      <div class="container">
+        <div class="footer-wrap">
+          <h5>Designed and maintained by Gaurang Velingkar</h5>
+        </div>
       </div>
     </div>
+    <!-- Theme specific scripts -->
+    <script src="https://d1tdp7z6w94jbb.cloudfront.net/js/jquery-3.3.1.min.js" type="text/javascript" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://assets.website-files.com/5c6eb5400253230156de2bd6/js/webflow.35ee6e80f.js" type="text/javascript"></script>
   </body>
 </html>

@@ -1,0 +1,37 @@
+<div class="section" style="margin: 50px 50px 50px 50px;">
+  <div class="container">
+    <div id="w-node-509be705858e-72b94c39" class="contact-form-wrap">
+      <div class="contact-form-heading-wrap"><h2>My Account</h2></div>
+      <div class="field">
+        <%= label_tag :email %>
+        <%= text_field_tag :email, current_user.email, class: 'text-field cc-contact-field w-input', disabled: true %>
+      </div>
+      <%= form_for(:user, url: { action: 'update' }, method: :patch) do |f| %>
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'text-field cc-contact-field w-input', placeholder: 'Enter full name', required: true, value: current_user.name %>
+        </div>
+
+        <div class="field">
+          <%= f.label :location %>
+          <%= f.text_field :location, class: 'text-field cc-contact-field w-input', placeholder: 'Enter residential location', required: true, value: current_user.location %>
+        </div>
+
+        <div class="field">
+          <%= f.label :age %>
+          <%= f.number_field :age, class: 'text-field cc-contact-field w-input', placeholder: 'Enter age', required: true, value: current_user.age %>
+        </div>
+
+        <div class="field">
+          <%= f.label :gender %>
+          <%= f.select :gender, options_for_select(@gender, current_user.gender), { prompt: '--Select one--',  required: true }, class: 'select-field cc-contact-field w-input' %>
+        </div>
+
+        <br>
+        <div class="actions" style="text-align: center;">
+          <%= f.submit "Save Changes", class: "button w-button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
