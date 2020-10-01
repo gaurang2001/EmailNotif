@@ -14,7 +14,7 @@
 
         <div class="field">
           <%= f.label :location %>
-          <%= f.text_field :location, class: 'text-field cc-contact-field w-input', placeholder: 'Enter residential location', required: true, value: current_user.location %>
+          <%= f.select :location, options_for_select(@locations, current_user.location), { prompt: '-- Select Location --',  required: true }, class: 'select-field cc-contact-field w-input' %>
         </div>
 
         <div class="field">

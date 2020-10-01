@@ -4,8 +4,7 @@
       <div class="contact-form-heading-wrap"><h2>Notify Users</h2></div>
       <div class="field">
         <%= label_tag :sender_email %>
-        <%# TODO: Replace with sender email %>
-        <%= text_field_tag :email, current_user.email, class: 'text-field cc-contact-field w-input', disabled: true %>
+        <%= text_field_tag :email, ENV["gmail_username"], class: 'text-field cc-contact-field w-input', disabled: true %>
       </div>
       <%= form_with url: send_mail_users_path do |f| %>
         <div class="field">
@@ -16,21 +15,31 @@
         <div class="field hidden-first single">
           <br>
           <%= f.label :name %>
-          <%= f.text_field :name, class: 'text-field cc-contact-field w-input', placeholder: 'Enter full name' %>
+          <%= f.text_field :name, class: 'text-field cc-contact-field w-input', placeholder: 'Enter full name of user' %>
         </div>
 
         <div class="field hidden-first filter">
           <br>
           <%= f.label :location %>
-          <%= f.text_field :location, class: 'text-field cc-contact-field w-input', placeholder: 'Enter residential location' %>
+          <%= f.select :location, options_for_select(@locations, nil), { prompt: '-- Select Locations --', multiple: true }, class: 'select-field cc-contact-field w-input' %>
         </div>
 
         <div class="field hidden-first filter">
           <%= f.label :age %>
-          <%= f.number_field :age, class: 'text-field cc-contact-field w-input', placeholder: 'Enter age' %>
+          <%= f.number_field :age, class: 'text-field cc-contact-field w-input', placeholder: 'Enter age', id: 'age' %>
+        </div>
+
+        <div class="field hidden-first filter" style="text-align: center;">
+          <label>--- OR ---</label>
         </div>
 
         <div class="field hidden-first filter">
+          <%= f.label :age_group %>
+          <%= f.select :age_group, options_for_select(@age_groups, nil), { prompt: '-- Select an Age Group --' }, class: 'select-field cc-contact-field w-input', id: 'age_group' %>
+        </div>
+
+        <div class="field hidden-first filter">
+          <br>
           <%= f.label :gender %>
           <%= f.select :gender, options_for_select(@gender), { prompt: '--Select one--' }, class: 'select-field cc-contact-field w-input' %>
         </div>
@@ -68,4 +77,32 @@
           $('.single').show();
       }
   });
+
+  // Either enter age group or age, both cannot be entered together
+  function check_age_valid(field) {
+      var val = "";
+      if(field) {
+          val = $('#age_group').val();
+          if(!(val === "")) {
+              $('#age_group').val("");
+              alert("Either enter age or enter age group, not both.");
+          }
+      }
+      else {
+          val = $('#age').val();
+          if(!(val === "")) {
+              $('#age').val("");
+              alert("Either enter age or enter age group, not both.");
+          }
+
+      }
+  }
+
+  $('#age_group').on('change', function(){
+      check_age_valid(0);
+  });
+
+  $('#age').on('input',function(){
+      check_age_valid(1);
+  })
 </script>
