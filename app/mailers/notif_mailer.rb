@@ -1,6 +1,6 @@
 class NotifMailer < ApplicationMailer
 
-  # Notify all users
+  # Notify a given user
   def notification(user, content, admin)
     @body = content[:body]
     mail(

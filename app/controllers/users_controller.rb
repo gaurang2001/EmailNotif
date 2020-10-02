@@ -94,7 +94,7 @@ class UsersController < ApplicationController
     end
 
     if name.present?
-      users << User.where(name: name)
+      users << User.find_by(name: name)
     elsif !users.present?
       users = User.where(age: ages, location: locations, gender: genders)
     end
