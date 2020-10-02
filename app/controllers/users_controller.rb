@@ -45,13 +45,13 @@ class UsersController < ApplicationController
   # Only accessible by admin
   def send_mail
     name = ""
-    emails = []
+    users = []
 
     # Filter using criteria
     case params[:choice]
 
     when "All" # Notify all users
-      emails = User.all.pluck(:email)
+      users = User.all
 
     when "Filter" # Notify users based on criteria
       all_users = User.all
@@ -94,17 +94,19 @@ class UsersController < ApplicationController
     end
 
     if name.present?
-      emails << User.find_by(name: name).email
-    elsif !emails.present?
-      emails = User.where(age: ages, location: locations, gender: genders).pluck(:email)
+      users << User.where(name: name)
+    elsif !users.present?
+      users = User.where(age: ages, location: locations, gender: genders)
     end
 
     # Call mailer
     content = { :subject => params[:subject], :body => params[:content] }
-    emails = emails.reject{ |email| email == ENV["gmail_username"] }
-    NotifMailer.notification(emails, content).deliver
+    users = users.reject{ |user| user.email == ENV["gmail_username"] }
+    users.each do |user|
+      NotifMailer.notification(user, content, User.find_admin).deliver
+    end
 
-    redirect_to admin_users_path, notice: "#{emails.count} users notified"
+    redirect_to admin_users_path, notice: "#{users.count} users notified"
   end
 
   private

@@ -37,6 +37,10 @@ class User < ApplicationRecord
     ]
   end
 
+  def self.find_admin
+    User.first
+  end
+
   # First user in table gets admin privileges
   def admin
     id == User.first.id

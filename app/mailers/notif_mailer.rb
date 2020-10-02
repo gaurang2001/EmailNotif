@@ -1,11 +1,14 @@
 class NotifMailer < ApplicationMailer
 
   # Notify all users
-  def notification(emails, content)
+  def notification(user, content, admin)
     @body = content[:body]
-    emails.each do |email|
-      mail(to: email, subject: content[:subject], reply_to: "donotreply@gmail.com")
+    mail(
+        to: user.email,
+        subject: content[:subject],
+        reply_to: "donotreply@gmail.com"
+    ) do |format|
+      format.html { render 'notif_mailer/notification', locals: { user: user, admin: admin } }
     end
   end
-
 end
