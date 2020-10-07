@@ -81,6 +81,10 @@ rake db:migrate
 6. Setup environment variables
 - Modify `~/.bashrc` file and add these lines to the bottom:
 ```
+# SQL
+export SQL_USERNAME=<your_mysql_username>
+export SQL_PASSWORD=<your_mysql_password>
+
 # EmailNotif
 export gmail_username=<your_gmail_id>
 export gmail_password=<your_gmail_password>
