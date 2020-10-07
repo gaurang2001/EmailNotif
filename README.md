@@ -29,7 +29,7 @@ instructions to setup the project on local.
 - Database - MySQL
 
 #### Setup
-1. Make sure you have RVM, Rails and MySQL installed on your system, if not, follow
+1. Make sure you have RVM, Rails, MySQL, NodeJs installed on your system, if not, follow
 these steps, otherwise, skip:
 - To install RVM (Ruby version manager), (Make sure you're running commands as 
 a login shell)
