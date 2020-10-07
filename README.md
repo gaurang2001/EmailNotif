@@ -112,4 +112,13 @@ rails server
  Since this application is used to send mails and not receive any,
  I found it the most suitable to use. _*ActionMailer*_ of Ruby on Rails 
  handles the load of sending mails at the backend.
+ 
+## Screenshots
+!["Login Page"](public/Screenshots/login.png)
 
+!["Dashboard](public/Screenshots/dashboard.png)
+
+!["Admin Dashboard](public/Screenshots/admin_dashboard.png)
+
+## References
+Theme taken from [https://business-starter-template.webflow.io/about](https://business-starter-template.webflow.io/about)
